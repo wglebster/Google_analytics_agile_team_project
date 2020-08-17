@@ -20,7 +20,7 @@ ui <- fluidPage(
                  radioButtons("goal_or_not",
                               label = "Select",
                               choices = list("Event clicked", "Event NOT clicked"),
-                              selected = "Event Clicked",
+                              selected = "Event clicked",
                               inline = TRUE)
                  )
       )
