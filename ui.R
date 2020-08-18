@@ -7,7 +7,7 @@ ui <- fluidPage(
                      label = "Date Range"
                      ),
       radioButtons("course",
-                   label = "Select Course",
+                   label = "Select",
                    choices = list("Data Analysis", "Software Development"),
                    selected = "Data Analysis")
     ),
