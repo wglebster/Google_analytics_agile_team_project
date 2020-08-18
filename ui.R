@@ -6,11 +6,17 @@ ui <- fluidPage(
       dateRangeInput("dates",
                      label = "Date Range"
                      ),
-      radioButtons("course",
-                   label = "Select Course",
-                   choices = list("Data Analysis", "Software Development"),
-                   selected = "Data Analysis")
-    ),
+      #Gleb added checkbox Input instead of radio buttons
+      checkboxGroupInput("course",
+                         label = "Select Course",
+                         list("Data Analysis", "Software Development"),
+                         selected = "Data Analysis")
+      ),
+    #   radioButtons("course",
+    #                label = "Select Course",
+    #                choices = list("Data Analysis", "Software Development"),
+    #                selected = "Data Analysis")
+    # ),
     mainPanel(
       tabsetPanel(
         tabPanel("Source"),
