@@ -2,5 +2,11 @@
 library(shiny)
 library(tidyverse)
 library(CodeClanData)
+library(lubridate)
 
-#set input variables
+#pull data
+source_and_landing <- read_csv("raw_data/source_and_landing.csv")
+goals_data <- read_csv("raw_data/goal_data.csv")
+exit_pages <- read_csv("raw_data/exit_pages.csv")
+
+#set input variables & wrangle data
