@@ -3,17 +3,21 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      dateRangeInput("dates",
+      dateRangeInput("date",
                      label = "Date Range"
                      ),
-      radioButtons("course",
-                   label = "Select Course",
-                   choices = list("Data Analysis", "Software Development"),
-                   selected = "Data Analysis")
+      # radioButtons("course",
+      #              label = "Select Course",
+      #              choices = list("Data Analysis", "Software Development"),
+      #              selected = "Data Analysis")
     ),
     mainPanel(
       tabsetPanel(
-        tabPanel("Source"),
+        tabPanel("Source",
+                 plotOutput("source_sessions_plot")),
+        
+        
+        
         tabPanel("Landing"),
         tabPanel("Previous to Goal"),
         tabPanel("Drop off/Exit",
