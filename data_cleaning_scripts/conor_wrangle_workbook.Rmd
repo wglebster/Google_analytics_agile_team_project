@@ -13,7 +13,7 @@ source_data <- read_csv("raw_data/source_and_landing.csv") %>%
   clean_names() %>%
   select(-landing_page_path, - time_on_page, -exit_page_path, -users)
   
-
+view(source_data)
 ```
 
 ```{r}
@@ -65,23 +65,13 @@ source_sessions_plot
 ```
 
 ```{r}
-source_da_plot <- clean_source_data %>% 
-  filter(goal13completions > 0) %>% 
-  ggplot() +
-  aes(x= source, y = sessions) +
-  geom_bar(stat="identity", aes(fill = source))
+options(scipen = 999)
 
-source_da_plot
-  
-```
 
-```{r}
-source_sd_plot <- clean_source_data %>% 
-  filter(goal17completions > 0) %>% 
-  ggplot() +
-  aes(x= source, y = sessions) +
-  geom_bar(stat="identity", aes(fill = source))
+goal_rate <- clean_source_data %>%
+ summarise(goal_rate = sum(goal17completions)/(sum(sessions)*100))
 
-source_sd_plot
+goal_rate
+
 ```
 
