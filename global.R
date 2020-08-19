@@ -18,20 +18,21 @@ exit_pages_and_goals_data <- bind_rows(exit_pages,
                                        goals_data) %>%
   mutate(month = month(date, label = TRUE)) %>%
   filter(exitPagePath == "/events/") %>% #the filter is applied to check if the exit page was the
-#/events/ page, if goalXXCompletions are 0 for either goal, it means that the session was
-# terminated witout booking an event. 
+#/events/ page, if goalXXCompletions are 0 for either goal, it means that the session ended
+# witout booking an event. 
   pivot_longer(c(6,7),
-               names_to = "goal_completion",
-               values_to = "completions_count")
+               names_to = "course",
+               values_to = "completions_count") %>%
+  mutate(course = ifelse(course == "goal13Completions", 
+                                  "Data Analysis", "Software Development"))
 
 ggplot(exit_pages_and_goals_data) +
    aes(x = month, 
        y = completions_count,
-       fill = goal_completion) +
-       # group = completions_count, 
-        
-      
-  geom_bar(position = "dodge", stat = "identity")
-
+       fill = course) +
+  geom_bar(position = "dodge", stat = "identity")+
+  labs(title = "Event bookings by month",
+       x = "Number of bookings",
+       y = "Month")
 
 #End Gleb's code
