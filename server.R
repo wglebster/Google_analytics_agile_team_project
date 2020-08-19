@@ -8,7 +8,7 @@ server <- function(input, output){
       filter(between(date, 
                      input$dates[1],
                      input$dates[2])) %>%
-      filter(exitPagePath == "/events/") %>% 
+      #filter(exitPagePath == "/events/") %>% 
       pivot_longer(c(6,7),
                    names_to = "course",
                    values_to = "completions_count") %>%
