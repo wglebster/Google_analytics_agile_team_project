@@ -1,7 +1,6 @@
 #global.R
 library(shiny)
 library(tidyverse)
-library(CodeClanData)
 library(lubridate)
 
 #pull data
