@@ -27,13 +27,15 @@ ui <- fluidPage(
         tabPanel("Landing"),
         tabPanel("Previous to Goal"),
         tabPanel("Drop off/Exit",
-                 # ,
                  # radioButtons("goal_or_not",
                  #              label = "Select",
                  #              choices = list("Event clicked", "Event NOT clicked"),
                  #              selected = "Event clicked",
                  #              inline = TRUE)
-                 plotOutput("event_booking_chart")
+                 plotOutput("event_booking_chart"),
+                 plotOutput("top_10_before_event_booking"),
+                 plotOutput("top10_session_terminated")
+                 
                  )
       )
     )
