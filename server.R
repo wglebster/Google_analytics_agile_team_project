@@ -39,16 +39,27 @@ server <- function(input, output){
       head(10) %>%
       ggplot() +
       aes(x = exitPagePath,
-          y = terminated_sessions
-          ) +
-      geom_histogram(stat = "identity", position = "dodge") +
+          y = terminated_sessions) +
+      geom_bar(stat = "identity") +
       coord_flip() +
       labs(title = "Top 10 pages where session was terminated",
-           x = "Number of terminated sessions",
-           y = "Page URL")
+           x = "Page URL",
+           y = "Number of terminated sessions")
   })
   output$top_10_before_event_booking <- renderPlot({
-    
+    exit_pages_and_goals_data() %>%
+      group_by(goalPreviousStep1) %>%
+      summarise(completions_count = sum(completions_count)) %>%
+      arrange(desc(completions_count)) %>%
+      head(10) %>%
+      ggplot() +
+      aes(x = goalPreviousStep1,
+          y = completions_count) +
+      geom_bar(stat = "identity")+
+      coord_flip()+
+      labs(title = "Top 10 visited pages before an Event booking",
+           x = "Page URL",
+           y = "Number of Event bookings")
   })
   
   ################End Gleb's code############
