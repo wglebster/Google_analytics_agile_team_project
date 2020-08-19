@@ -58,6 +58,27 @@ top_10_other <- landing_category_col %>%
 ```
 
 ```{r}
+landing_category_col %>% 
+  group_by(landing_category) %>% 
+  summarise(total_sessions = sum(sessions), goal_13_total = sum(goal13completions), goal_17_total = sum(goal17completions)) %>% 
+  mutate(goal_13_cr = goal_13_total/total_sessions, goal_17_cr = goal_17_total/total_sessions)
+```
 
+
+```{r}
+landing_category_col %>% 
+  filter(goal13completions >= 0) %>% 
+  group_by(landing_category) %>% 
+  summarise(total_goal_sessions = sum(goal13completions)) %>% 
+  arrange(desc(total_goal_sessions))
+  
+```
+
+```{r}
+landing_category_col %>% 
+  filter(goal17completions >= 0) %>% 
+  group_by(landing_category) %>% 
+  summarise(total_goal_sessions = sum(goal17completions)) %>% 
+  arrange(desc(total_goal_sessions))
 ```
 

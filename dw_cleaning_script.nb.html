@@ -1838,11 +1838,72 @@ view(landing_category_col)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFuZGluZ19jYXRlZ29yeV9jb2wgJT4lIFxuICBncm91cF9ieShsYW5kaW5nX2NhdGVnb3J5KSAlPiUgXG4gIHN1bW1hcmlzZSh0b3RhbF9zZXNzaW9ucyA9IHN1bShzZXNzaW9ucyksIGdvYWxfMTNfdG90YWwgPSBzdW0oZ29hbDEzY29tcGxldGlvbnMpLCBnb2FsXzE3X3RvdGFsID0gc3VtKGdvYWwxN2NvbXBsZXRpb25zKSkgJT4lIFxuICBtdXRhdGUoZ29hbF8xM19jciA9IGdvYWxfMTNfdG90YWwvdG90YWxfc2Vzc2lvbnMsIGdvYWxfMTdfY3IgPSBnb2FsXzE3X3RvdGFsL3RvdGFsX3Nlc3Npb25zKVxuYGBgIn0= -->
+<pre class="r"><code>landing_category_col %&gt;% 
+  group_by(landing_category) %&gt;% 
+  summarise(total_sessions = sum(sessions), goal_13_total = sum(goal13completions), goal_17_total = sum(goal17completions)) %&gt;% 
+  mutate(goal_13_cr = goal_13_total/total_sessions, goal_17_cr = goal_17_total/total_sessions)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MTIsIm5jb2wiOjZ9LCJyZGYiOiJINHNJQUFBQUFBQUFBMlZVWDBnVVFSaWZPOTNUVzlTTUhwUXdJb2g2MmdQVHNvS2FDNjhDWHdJckZSRjA3bTdhV3p4bmx0azlUeW5sUlByN21BbStSWDhnZXBBZ0tYdnJ5Q2ZwSVNIUW9KY2lFSitrcUpjS3ZHWnZaaFozRzlqN2ZiL2Y5MzN6emJmN3pmV21CanIwQVIwQVVBTnFZdnhYNHliUXJsNjVZSndFb0RiS1NRVFVncmlIRTl5OWp4czhERFR6cDBFNk5KU21CVmNTSFdYSExNZXhLSEdrVXB2T1UxUGFkUmxhWUE1V3Jqak9XaVJkWUdaT0NqRThqb21yM0hWbUhqa21MVXBhbjZOajJFWW1WdGtXR2NlTVlFZkZhOVROWVNiSkhwdGhRNVF6aXBTTnFqMkxPRzBSeExqWjVQV1FuR3YxT2diSkcyV0I1YmNDMy9jSnZQMUo0T3diZ2JlMkJLNGRTMWJ4WWtud3BVV0I4eU1DcDc4QXVVUWRFRnpKTm9sbkpOWkxQQjZLNnkwSCtaR1EvNnh2aWpweUgvZzl0Tzk1aVNvUFNteVZPQlE4WWJJelZDZFZDdFNCZzJ2UEZsckc1NVFJZThwUCswNC8rUXRIZnZmUExiOWVoL2IrRFRNU1dZU1A5TU96Yk8yT0g4ZHVmbHc2Tk5yZ2MvUnQ0eWZ1V2ZINWk1YjFlMTkvVFBsMXNtMVRML2N1YkVQMEliYjRlT1lBUExIZHZmendUd3JtNXMvcG0rOE1pQ2NQZGtiNjc4UG5Sd2NuTnUxVldGcDVRSVkyWitEMXJjRlU2Zk1sZjErN2U3cGszRjMxK1N0NEtoSy8vQ3MwNUJwQlkzdzh4WURIcE5pY1I0UVBxam1jUVM0MktadVVlcE5MWFpRZjV2TzhlOTRiVGNyRjlvN2hxamNvZGdWRVhVVm1XRkRwOHBUZ3dlS01GaFBxY0kzOGlYcmZvMUtwL05kQmhsOGExWUVTOVN4eVVlSWE0L21jN1lSUzZxanRWaHNBVWU5K2E2SGtDQXNKelFYaW5TUnJaSElGTW1xMGU2T2lWLzFpTlVxN1laY2RFeldqRmJtWDV0OTRZbHBFWFdrdGo5Sll2WjRtM25LMTQ0VE5MT0wvd1hEVlNRUmVZNGJtbFZKdER1ejhBeXBQTm9yWEJBQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["landing_category"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_sessions"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["goal_13_total"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["goal_17_total"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["goal_13_cr"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["goal_17_cr"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"about","2":"1222","3":"2","4":"3","5":"0.0016366612","6":"0.002454992"},{"1":"admissions","2":"460","3":"0","4":"1","5":"0.0000000000","6":"0.002173913"},{"1":"blog","2":"8574","3":"7","4":"3","5":"0.0008164217","6":"0.000349895"},{"1":"courses","2":"13996","3":"29","4":"42","5":"0.0020720206","6":"0.003000857"},{"1":"edinburgh","2":"763","3":"3","4":"2","5":"0.0039318480","6":"0.002621232"},{"1":"events","2":"631","3":"21","4":"31","5":"0.0332805071","6":"0.049128368"},{"1":"glasgow","2":"733","3":"0","4":"6","5":"0.0000000000","6":"0.008185539"},{"1":"homepage","2":"16585","3":"75","4":"113","5":"0.0045221586","6":"0.006813386"},{"1":"inverness","2":"47","3":"0","4":"0","5":"0.0000000000","6":"0.000000000"},{"1":"other","2":"5037","3":"11","4":"20","5":"0.0021838396","6":"0.003970617"},{"1":"pre-course-work","2":"1368","3":"0","4":"0","5":"0.0000000000","6":"0.000000000"},{"1":"webinar","2":"494","3":"30","4":"41","5":"0.0607287449","6":"0.082995951"}],"options":{"columns":{"min":{},"max":[10],"total":[6]},"rows":{"min":[10],"max":[10],"total":[12]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFuZGluZ19jYXRlZ29yeV9jb2wgJT4lIFxuICBmaWx0ZXIoZ29hbDEzY29tcGxldGlvbnMgPj0gMCkgJT4lIFxuICBncm91cF9ieShsYW5kaW5nX2NhdGVnb3J5KSAlPiUgXG4gIHN1bW1hcmlzZSh0b3RhbF9nb2FsX3Nlc3Npb25zID0gc3VtKGdvYWwxM2NvbXBsZXRpb25zKSkgJT4lIFxuICBhcnJhbmdlKGRlc2ModG90YWxfZ29hbF9zZXNzaW9ucykpXG5gYGAifQ== -->
+<pre class="r"><code>landing_category_col %&gt;% 
+  filter(goal13completions &gt;= 0) %&gt;% 
+  group_by(landing_category) %&gt;% 
+  summarise(total_goal_sessions = sum(goal13completions)) %&gt;% 
+  arrange(desc(total_goal_sessions))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MTIsIm5jb2wiOjJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBNDFTUFcrRE1CQjFTTWdIeXBlVXRYTTNXS3BLN2RBcVE5VWZFTFZTdHNpQWExQ0lqWXdKN2RhZjFoL1ZPZVFNNTZoaHFpWDg3cjN6M2ZrT2IxNjJkOTdXSTRUMFNYOEl1d3NtY2QvZlh2MEhRZ1lPa0I0WmtJbkJUM0N2d0REaUVyNHBPc2FKUExDY2NvWjhWTEV3RlZSWkdzbFNGYXhBT21SSEpyUmxydFFKc3ljSFlTWTUyaE1XcHlJc0ZVL3NTUnJLVWlQeGFIeElpeUtWd2lZYThZd1dYRlkyUEJWSHBnUXJySCtSSythM04vRXJxZllnelUwUDY4MlA2WmlzbjBtTFQ0ajNpTGVJTjRoalJQTGZkVFZFVjlBRGpLSWRvSVBpTXFNQ3V1VzdpR3JHcGZwQ2ZhV2xwdG1PUzloZ2dHMjcxL2ttU2xhQnpUa3pPYjlocSt2NnQxczRndm5Zd2xiMFlxcHA4S0VnSHRpcEV6S1N1VzVMT3VhM3U1M2dudW9JaTFLWW04UitsSlJpN3orYUFvMjdYVE8wcDM5c3B5M3AxSmpLdlR3U3dWTmhINVNiMFpCbFNPYlFjZE53a0t0VVhCNEVxRVhRek1zcWtjeXMwdlJHVG1jbTlzTG83UUlBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["landing_category"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_goal_sessions"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"homepage","2":"75"},{"1":"webinar","2":"30"},{"1":"courses","2":"29"},{"1":"events","2":"21"},{"1":"other","2":"11"},{"1":"blog","2":"7"},{"1":"edinburgh","2":"3"},{"1":"about","2":"2"},{"1":"admissions","2":"0"},{"1":"glasgow","2":"0"},{"1":"inverness","2":"0"},{"1":"pre-course-work","2":"0"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[12]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
+<pre class="r"><code>NA</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFuZGluZ19jYXRlZ29yeV9jb2wgJT4lIFxuICBmaWx0ZXIoZ29hbDE3Y29tcGxldGlvbnMgPj0gMCkgJT4lIFxuICBncm91cF9ieShsYW5kaW5nX2NhdGVnb3J5KSAlPiUgXG4gIHN1bW1hcmlzZSh0b3RhbF9nb2FsX3Nlc3Npb25zID0gc3VtKGdvYWwxN2NvbXBsZXRpb25zKSkgJT4lIFxuICBhcnJhbmdlKGRlc2ModG90YWxfZ29hbF9zZXNzaW9ucykpXG5gYGAifQ== -->
+<pre class="r"><code>landing_category_col %&gt;% 
+  filter(goal17completions &gt;= 0) %&gt;% 
+  group_by(landing_category) %&gt;% 
+  summarise(total_goal_sessions = sum(goal17completions)) %&gt;% 
+  arrange(desc(total_goal_sessions))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYHN1bW1hcmlzZSgpYCB1bmdyb3VwaW5nIG91dHB1dCAob3ZlcnJpZGUgd2l0aCBgLmdyb3Vwc2AgYXJndW1lbnQpXG4ifQ== -->
+<pre><code>`summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MTIsIm5jb2wiOjJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBM1ZTc1U3RE1CQjEwNlp0b3JaVTZzSlBKQUxCd05ZT2hROUFJSFZBUWs1aW5LaXBIZGxPQXh1ZnpNRGNjSTV0UkNOaEtYNzMzc2wzZmhjL2JuYzM0UzVFQ0EzUmNBeTdEeUh5bjU4ZW9qdUVSaDZRQVJxaFFPTTdwRmNRYUhFSjM4d21wamsva0FwVFl2a2s1YldRUkRyYWtLUmdXRmc2SmtmQ2xFdjZYT1hFcFNhMHhKTHl4dVZ3d210bHlTZ3BPYlZ4UUxLQ0piV2d1UlZDbkIwS0tRdk9YTjJnWUVjaUdKRk91S2dFaWN6Rm9vYUxQVWdMN1dIenN0R08wZVllR2R4K0dseGJmbXZ4MHVLMGh3YlErZ3Y5czg2RzZETjhnTW1ZQVhwV1hKYVlnU1A2bW1KRktCY2ZWbDhwcm5ENVNqbHNNRS9qNzd4ZUlIZ1R1NXB6WFZOZnYyM2I3MzdqRkdickdqc3h6TERDOFp1QTg4Qk92U01UWGluVDB0Ty8zZThkSG9pZXNLeVp2a2tXcFhuTjl0SDFsZTdRNWMyYTIzajJKL1pNVDYrMXRmemZWOEpvd2R5TDhrdWNrTktTQlZqdUhNZVZLSmg3SHlHb011NEc1cFNVbDA3cHpLSFRENnZEUXA3dUFnQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["landing_category"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_goal_sessions"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"homepage","2":"113"},{"1":"courses","2":"42"},{"1":"webinar","2":"41"},{"1":"events","2":"31"},{"1":"other","2":"20"},{"1":"glasgow","2":"6"},{"1":"about","2":"3"},{"1":"blog","2":"3"},{"1":"edinburgh","2":"2"},{"1":"admissions","2":"1"},{"1":"inverness","2":"0"},{"1":"pre-course-work","2":"0"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[12]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGdncGxvdDIpCgoKbGFuZGluZ19kYXRhIDwtIHJlYWRfY3N2KCJyYXdfZGF0YS9zb3VyY2VfYW5kX2xhbmRpbmcuY3N2IikKCnZpZXcobGFuZGluZ19kYXRhKQpgYGAKCmBgYHtyfQpjbGVhbl9sYW5kaW5nX2RhdGEgPC0gbGFuZGluZ19kYXRhICU+JSAKICBzZWxlY3QoZGF0ZSwgbGFuZGluZ1BhZ2VQYXRoLCBzZXNzaW9ucywgZ29hbDEzQ29tcGxldGlvbnMsIGdvYWwxN0NvbXBsZXRpb25zKSAlPiUgCiAgY2xlYW5fbmFtZXMoKQpgYGAKCmBgYHtyfQpsYW5kaW5nX2NhdGVnb3J5X2NvbDwtIGNsZWFuX2xhbmRpbmdfZGF0YSAlPiUKICBtdXRhdGUobGFuZGluZ19jYXRlZ29yeSA9IGNhc2Vfd2hlbigKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJhYm91dC11cyIpIH4gImFib3V0IiwKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJhZG1pc3Npb25zIikgfiAiYWRtaXNzaW9ucyIsCiAgICBzdHJfZGV0ZWN0KGxhbmRpbmdfcGFnZV9wYXRoLCAiYmxvZyIpIH4gImJsb2ciLAogICAgc3RyX2RldGVjdChsYW5kaW5nX3BhZ2VfcGF0aCwgImNvdXJzZXMiKSB+ICJjb3Vyc2VzIiwKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJldmVudHMiKSB+ICJldmVudHMiLAogICAgc3RyX2RldGVjdChsYW5kaW5nX3BhZ2VfcGF0aCwgInByZS1jb3Vyc2Utd29yayIpIH4gInByZS1jb3Vyc2Utd29yayIsCiAgICBzdHJfZGV0ZWN0KGxhbmRpbmdfcGFnZV9wYXRoLCAiW0VlXWRpbmJ1cmdoIikgfiAiZWRpbmJ1cmdoIiwKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJbR2ddbGFzZ293IikgfiAiZ2xhc2dvdyIsCiAgICBzdHJfZGV0ZWN0KGxhbmRpbmdfcGFnZV9wYXRoLCAiW0lpXW52ZXJuZXNzIikgfiAiaW52ZXJuZXNzIiwKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJ3ZWJpbmFyIikgfiAid2ViaW5hciIsCiAgICBzdHJfZGV0ZWN0KGxhbmRpbmdfcGFnZV9wYXRoLCAiW2Etel0iKSB+ICJvdGhlciIsCiAgICBUUlVFIH4gImhvbWVwYWdlIikpCgp2aWV3KGxhbmRpbmdfY2F0ZWdvcnlfY29sKQpgYGAKCmBgYHtyfQpsYW5kaW5nX2NhdGVnb3J5X2NvbCAlPiUgCiAgZ2dwbG90KCkgKwogIGFlcyh4ID0gbGFuZGluZ19jYXRlZ29yeSwgeSA9IHNlc3Npb25zLCBmaWxsID0gbGFuZGluZ19jYXRlZ29yeSkgKwogIGdlb21fY29sKCkKYGBgCgoKCmBgYHtyfQp0b3BfMTBfb3RoZXIgPC0gbGFuZGluZ19jYXRlZ29yeV9jb2wgJT4lIAogIGZpbHRlcihsYW5kaW5nX2NhdGVnb3J5ID09ICJvdGhlciIpICU+JSAKICBncm91cF9ieShsYW5kaW5nX3BhZ2VfcGF0aCkgJT4lIAogIHN1bW1hcmlzZSh0b3RhbF9zZXNzaW9ucyA9IHN1bShzZXNzaW9ucykpICU+JSAKICBhcnJhbmdlKGRlc2ModG90YWxfc2Vzc2lvbnMpKSAlPiUgCiAgc2xpY2UoMToxMCkKCmBgYAoKYGBge3J9CgpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGdncGxvdDIpCgoKbGFuZGluZ19kYXRhIDwtIHJlYWRfY3N2KCJyYXdfZGF0YS9zb3VyY2VfYW5kX2xhbmRpbmcuY3N2IikKCnZpZXcobGFuZGluZ19kYXRhKQpgYGAKCmBgYHtyfQpjbGVhbl9sYW5kaW5nX2RhdGEgPC0gbGFuZGluZ19kYXRhICU+JSAKICBzZWxlY3QoZGF0ZSwgbGFuZGluZ1BhZ2VQYXRoLCBzZXNzaW9ucywgZ29hbDEzQ29tcGxldGlvbnMsIGdvYWwxN0NvbXBsZXRpb25zKSAlPiUgCiAgY2xlYW5fbmFtZXMoKQpgYGAKCmBgYHtyfQpsYW5kaW5nX2NhdGVnb3J5X2NvbDwtIGNsZWFuX2xhbmRpbmdfZGF0YSAlPiUKICBtdXRhdGUobGFuZGluZ19jYXRlZ29yeSA9IGNhc2Vfd2hlbigKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJhYm91dC11cyIpIH4gImFib3V0IiwKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJhZG1pc3Npb25zIikgfiAiYWRtaXNzaW9ucyIsCiAgICBzdHJfZGV0ZWN0KGxhbmRpbmdfcGFnZV9wYXRoLCAiYmxvZyIpIH4gImJsb2ciLAogICAgc3RyX2RldGVjdChsYW5kaW5nX3BhZ2VfcGF0aCwgImNvdXJzZXMiKSB+ICJjb3Vyc2VzIiwKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJldmVudHMiKSB+ICJldmVudHMiLAogICAgc3RyX2RldGVjdChsYW5kaW5nX3BhZ2VfcGF0aCwgInByZS1jb3Vyc2Utd29yayIpIH4gInByZS1jb3Vyc2Utd29yayIsCiAgICBzdHJfZGV0ZWN0KGxhbmRpbmdfcGFnZV9wYXRoLCAiW0VlXWRpbmJ1cmdoIikgfiAiZWRpbmJ1cmdoIiwKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJbR2ddbGFzZ293IikgfiAiZ2xhc2dvdyIsCiAgICBzdHJfZGV0ZWN0KGxhbmRpbmdfcGFnZV9wYXRoLCAiW0lpXW52ZXJuZXNzIikgfiAiaW52ZXJuZXNzIiwKICAgIHN0cl9kZXRlY3QobGFuZGluZ19wYWdlX3BhdGgsICJ3ZWJpbmFyIikgfiAid2ViaW5hciIsCiAgICBzdHJfZGV0ZWN0KGxhbmRpbmdfcGFnZV9wYXRoLCAiW2Etel0iKSB+ICJvdGhlciIsCiAgICBUUlVFIH4gImhvbWVwYWdlIikpCgp2aWV3KGxhbmRpbmdfY2F0ZWdvcnlfY29sKQpgYGAKCmBgYHtyfQpsYW5kaW5nX2NhdGVnb3J5X2NvbCAlPiUgCiAgZ2dwbG90KCkgKwogIGFlcyh4ID0gbGFuZGluZ19jYXRlZ29yeSwgeSA9IHNlc3Npb25zLCBmaWxsID0gbGFuZGluZ19jYXRlZ29yeSkgKwogIGdlb21fY29sKCkKYGBgCgoKCmBgYHtyfQp0b3BfMTBfb3RoZXIgPC0gbGFuZGluZ19jYXRlZ29yeV9jb2wgJT4lIAogIGZpbHRlcihsYW5kaW5nX2NhdGVnb3J5ID09ICJvdGhlciIpICU+JSAKICBncm91cF9ieShsYW5kaW5nX3BhZ2VfcGF0aCkgJT4lIAogIHN1bW1hcmlzZSh0b3RhbF9zZXNzaW9ucyA9IHN1bShzZXNzaW9ucykpICU+JSAKICBhcnJhbmdlKGRlc2ModG90YWxfc2Vzc2lvbnMpKSAlPiUgCiAgc2xpY2UoMToxMCkKCmBgYAoKYGBge3J9CmxhbmRpbmdfY2F0ZWdvcnlfY29sICU+JSAKICBncm91cF9ieShsYW5kaW5nX2NhdGVnb3J5KSAlPiUgCiAgc3VtbWFyaXNlKHRvdGFsX3Nlc3Npb25zID0gc3VtKHNlc3Npb25zKSwgZ29hbF8xM190b3RhbCA9IHN1bShnb2FsMTNjb21wbGV0aW9ucyksIGdvYWxfMTdfdG90YWwgPSBzdW0oZ29hbDE3Y29tcGxldGlvbnMpKSAlPiUgCiAgbXV0YXRlKGdvYWxfMTNfY3IgPSBnb2FsXzEzX3RvdGFsL3RvdGFsX3Nlc3Npb25zLCBnb2FsXzE3X2NyID0gZ29hbF8xN190b3RhbC90b3RhbF9zZXNzaW9ucykKYGBgCgoKYGBge3J9CmxhbmRpbmdfY2F0ZWdvcnlfY29sICU+JSAKICBmaWx0ZXIoZ29hbDEzY29tcGxldGlvbnMgPj0gMCkgJT4lIAogIGdyb3VwX2J5KGxhbmRpbmdfY2F0ZWdvcnkpICU+JSAKICBzdW1tYXJpc2UodG90YWxfZ29hbF9zZXNzaW9ucyA9IHN1bShnb2FsMTNjb21wbGV0aW9ucykpICU+JSAKICBhcnJhbmdlKGRlc2ModG90YWxfZ29hbF9zZXNzaW9ucykpCiAgCmBgYAoKYGBge3J9CmxhbmRpbmdfY2F0ZWdvcnlfY29sICU+JSAKICBmaWx0ZXIoZ29hbDE3Y29tcGxldGlvbnMgPj0gMCkgJT4lIAogIGdyb3VwX2J5KGxhbmRpbmdfY2F0ZWdvcnkpICU+JSAKICBzdW1tYXJpc2UodG90YWxfZ29hbF9zZXNzaW9ucyA9IHN1bShnb2FsMTdjb21wbGV0aW9ucykpICU+JSAKICBhcnJhbmdlKGRlc2ModG90YWxfZ29hbF9zZXNzaW9ucykpCmBgYAoK</div>
 
 
 
