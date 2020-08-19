@@ -38,12 +38,26 @@ landing_category_col<- clean_landing_data %>%
 view(landing_category_col)
 ```
 
-
 ```{r}
 landing_category_col %>% 
+  ggplot() +
+  aes(x = landing_category, y = sessions, fill = landing_category) +
+  geom_col()
+```
+
+
+
+```{r}
+top_10_other <- landing_category_col %>% 
   filter(landing_category == "other") %>% 
-  group_by(landing_category) %>% 
-  summarise(sessions) %>% 
-  arrange(desc)
+  group_by(landing_page_path) %>% 
+  summarise(total_sessions = sum(sessions)) %>% 
+  arrange(desc(total_sessions)) %>% 
+  slice(1:10)
+
+```
+
+```{r}
+
 ```
 
