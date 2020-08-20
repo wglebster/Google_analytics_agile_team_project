@@ -15,15 +15,20 @@ ui <- fluidPage(tags$div(class="header",
 
     mainPanel(
       tabsetPanel(
-        tabPanel("Source",
+        tabPanel("Source", 
+                 br(),
+                 plotOutput("source_sessions_plot"),
+                 br(),
                  radioButtons("course",
                               label = "Select Course",
                               choices = c("Data Analysis" = "goal13completions",
                                           "Software Development" = "goal17completions"),
-                              selected = "goal13completions"),
-                              inline = TRUE)
-        ),
-      tabPanel("Landing", plotOutput("landing_cat_v_total_sessions"), 
+                              selected = "goal13completions"), 
+                 br(),
+                 plotOutput("source_courses_plot")),
+      
+      tabPanel("Landing", br(),
+               plotOutput("landing_cat_v_total_sessions"), 
                  br(),
                  textOutput("top_10_other_text"), 
                 br(),
@@ -35,20 +40,24 @@ ui <- fluidPage(tags$div(class="header",
                ),
         
         tabPanel("Previous to Goal",
+                 br(),
                  plotOutput("prev_g13_plot"),
+                 br(),
                  plotOutput("prev_g17_plot"),
                  ),
         
       tabPanel("Drop off/Exit",
+               br(),
                plotOutput("event_booking_chart"),
+               br(),
                plotOutput("top10_session_terminated")
-              ),
+              )
 
                  )
       )
     )
 
-    
+)
 
 
 
