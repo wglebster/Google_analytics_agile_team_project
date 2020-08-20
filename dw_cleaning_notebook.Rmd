@@ -45,9 +45,11 @@ landing_cat_v_total_sessions <- landing_category_col %>%
   aes(x = landing_category, y = sessions, fill = landing_category) +
   labs(x = "Landing Page Primary Category",
        y = "Total Number of Sessions",
-       title = "\nTotal Number of Session by Primary Location Category") +
+       title = "\nTotal Number of Sessions by Primary Location Category") +
   geom_col() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+landing_cat_v_total_sessions
 ```
 
 
@@ -60,13 +62,15 @@ top_10_other <- landing_category_col %>%
   arrange(desc(total_sessions)) %>% 
   slice(1:10)
 
+top_10_other
+
 ```
 
 ```{r}
 landing_category_col %>% 
   group_by(landing_category) %>% 
   summarise(total_sessions = sum(sessions), goal_13_total = sum(goal13completions), goal_17_total = sum(goal17completions)) %>% 
-  mutate(goal_13_cr = goal_13_total/total_sessions, goal_17_cr = goal_17_total/total_sessions) %>% 
+  mutate(goal_13_cr = round((goal_13_total/total_sessions) * 100, digits = 2), goal_17_cr = round((goal_17_total/total_sessions) * 100, digits = 2)) %>% 
   arrange(desc(goal_13_cr))
 ```
 
