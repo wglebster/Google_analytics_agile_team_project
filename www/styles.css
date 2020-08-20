@@ -1,0 +1,29 @@
+/* color scheme: 
+#4DA2CD - light blue
+#1B3445 - dark blue
+#E9415E - pink
+#E6C372  - yellow
+*/
+
+body { /* page body styling */
+  font-family: Verdana, Helvetica, sans-serif;
+  color: white;
+  background-color: #4DA2CD;
+}
+.header img{
+  float: right;
+  width: 10%;
+  height: 10%;
+  padding-top: 2%;
+}
+#dates { /*Dates input styling */
+  background-color:#1B3445;
+}
+.well{ /*Dates input styling */
+    background-color:#1B3445;
+}
+
+a{
+  background-color:#1B3445;
+  color: white;
+}
