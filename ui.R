@@ -1,4 +1,5 @@
-ui <- fluidPage(tags$div(class="header", img(src = "cropped-CodeClan-Logo-White-2019-01-1.png")),
+ui <- fluidPage(tags$div(class="header",
+                        img(src = "cropped-CodeClan-Logo-White-2019-01-1.png")),
                         theme = "styles.css",
   titlePanel("Events Dashboard"),
   
@@ -11,11 +12,6 @@ ui <- fluidPage(tags$div(class="header", img(src = "cropped-CodeClan-Logo-White-
                      start = min(source_and_landing$date),
                      end = max(source_and_landing$date)
                      ),
-
-      # radioButtons("course",
-      #              label = "Select Course",
-      #              choices = list("Data Analysis", "Software Development"),
-      #              selected = "Data Analysis")
     ),
     mainPanel(
       tabsetPanel(
