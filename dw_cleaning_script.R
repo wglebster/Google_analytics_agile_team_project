@@ -1,22 +1,14 @@
-#global.R
-library(shiny)
+
 library(tidyverse)
-library(lubridate)
 library(janitor)
-library(data.table)
+library(ggplot2)
 
 
-#set input variables
-
-clean_source_data <- read_csv("clean_data/clean_source_data.csv")
-clean_goal_prev_data <- read_csv("clean_data/clean_goal_prev_data.csv")
-source_and_landing <- read_csv("raw_data/source_and_landing.csv")
-goals_data <- read_csv("raw_data/goal_data.csv") 
-exit_pages <- read_csv("raw_data/exit_pages.csv")
-landing_data <- read_csv("raw_data/source_and_landing.csv") 
+landing_data <- read_csv("raw_data/source_and_landing.csv")
 
 
-colnames(clean_source_data)
+
+
 
 clean_landing_data <- landing_data %>% 
   select(date, landingPagePath, sessions, goal13Completions, goal17Completions) %>% 
@@ -37,7 +29,6 @@ landing_category_col<- clean_landing_data %>%
     str_detect(landing_page_path, "webinar") ~ "webinar",
     str_detect(landing_page_path, "[a-z]") ~ "other",
     TRUE ~ "homepage"))
-
 
 
 landing_cat_v_total_sessions <- landing_category_col %>% 
@@ -62,7 +53,8 @@ landing_category_col %>%
   group_by(landing_category) %>% 
   summarise(total_sessions = sum(sessions), goal_13_total = sum(goal13completions), goal_17_total = sum(goal17completions)) %>% 
   mutate(goal_13_cr = goal_13_total/total_sessions, goal_17_cr = goal_17_total/total_sessions) %>% 
-  arrange(desc(goal_13_cr))
+  arrange(desc(goal_13_cr)) %>% 
+  head(10)
 
 
 goal_13_returns <- landing_category_col %>% 
@@ -78,8 +70,5 @@ goal_17_returns <- landing_category_col %>%
   summarise(total_goal_sessions = sum(goal17completions)) %>% 
   arrange(desc(total_goal_sessions))
 
-## end Dave's code
-
-#pull data
 
 

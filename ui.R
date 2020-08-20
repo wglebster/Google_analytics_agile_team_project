@@ -4,40 +4,52 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       dateRangeInput("dates",
-                     label = "Date Range"
-                     ),
-      radioButtons("course",
-                   label = "Select Course",
-                     choices = c("Data Analysis" = "goal13completions",
-                                 "Software Development" = "goal17completions"),
-                   selected = "goal13completions")
-    ),
+                     "Date Range",
+                     min = min(source_and_landing$date),
+                     max = max(source_and_landing$date),
+                     start = min(source_and_landing$date),
+                     end = max(source_and_landing$date)),
+      ),
+                     
+      
     mainPanel(
       tabsetPanel(
         tabPanel("Source",
+                 radioButtons("course",
+                              label = "Select Course",
+                              choices = c("Data Analysis" = "goal13completions",
+                                          "Software Development" = "goal17completions"),
+                              selected = "goal13completions"), 
+                 
                  plotOutput("source_sessions_plot"),
+                 
                  plotOutput("source_courses_plot")
                  ),
         
+        tabPanel("Landing", plotOutput("landing_cat_v_total_sessions"), 
+                 br(),
+                 textOutput("top_10_other_text"), br(),
+                 
+                 dataTableOutput("top_10_other"),
+                 
+                 br(), textOutput("conversion_rate_text"),
+                 br(),
+                 dataTableOutput("conversion_rate")),
         
-        
-        tabPanel("Landing"),
         tabPanel("Previous to Goal",
                  plotOutput("prev_g13_plot"),
                  plotOutput("prev_g17_plot"),
                  ),
         
         tabPanel("Drop off/Exit",
-                 radioButtons("goal_or_not",
-                              label = "Select",
-                              choices = list("Event clicked", "Event NOT clicked"),
-                              selected = "Event clicked",
-                              inline = TRUE)
+                 plotOutput("event_booking_chart")
                  )
       )
     )
+
     
-    
-  )
 )
+  )
+
+
 
