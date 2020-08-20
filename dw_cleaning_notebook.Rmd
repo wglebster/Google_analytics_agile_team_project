@@ -97,3 +97,22 @@ view(goal_17_returns)
 
 ```
 
+
+```{r}
+test_date <-landing_category_col %>%
+      filter(between(date, 
+                     "2020-04-12",
+                     "2020-05-12"))
+```
+
+```{r}
+
+ggplot(test_date) + 
+      aes(x = landing_category, y = sessions) +
+      labs(x = "Landing Page Primary Category",
+           y = "Total Number of Sessions",
+           title = "\nTotal Number of Session by Primary Location Category") +
+      geom_col() +
+      theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+

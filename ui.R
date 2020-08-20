@@ -14,10 +14,11 @@ ui <- fluidPage(
     mainPanel(
       tabsetPanel(
         tabPanel("Source"),
-        tabPanel("Landing"),
-                  plotOutput("landing_cat_v_total_sessions"),
-                  DT::dataTableOutput("top_10_other"),
-                  DT::dataTableOutput("conversion_rate"),
+        tabPanel("Landing", plotOutput("landing_cat_v_total_sessions"), 
+                 br(), textOutput("top_10_other_text"), br(),
+                            dataTableOutput("top_10_other"),
+                 br(), textOutput("conversion_rate_text"), br(),
+                            dataTableOutput("conversion_rate")),
                   
         tabPanel("Previous to Goal"),
         tabPanel("Drop off/Exit",

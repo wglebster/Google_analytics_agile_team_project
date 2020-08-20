@@ -36,6 +36,7 @@ landing_category_col<- clean_landing_data %>%
     TRUE ~ "homepage"))
 
 
+
 landing_cat_v_total_sessions <- landing_category_col %>% 
   ggplot() +
   aes(x = landing_category, y = sessions, fill = landing_category) +

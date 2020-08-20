@@ -53,7 +53,8 @@ landing_category_col %>%
   group_by(landing_category) %>% 
   summarise(total_sessions = sum(sessions), goal_13_total = sum(goal13completions), goal_17_total = sum(goal17completions)) %>% 
   mutate(goal_13_cr = goal_13_total/total_sessions, goal_17_cr = goal_17_total/total_sessions) %>% 
-  arrange(desc(goal_13_cr))
+  arrange(desc(goal_13_cr)) %>% 
+  head(10)
 
 
 goal_13_returns <- landing_category_col %>% 
