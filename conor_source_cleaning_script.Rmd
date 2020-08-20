@@ -69,10 +69,21 @@ source_sessions_plot
 options(scipen = 999)
 
 
-goal_rate <- clean_source_data %>%
- summarise(goal_rate = sum(goal17completions)/(sum(sessions)*100))
+goal17_con_rate <- clean_source_data %>%
+ summarise(goal_rate = round((sum(goal17completions)/(sum(sessions))*100),digits = 2))
 
-goal_rate
+goal17_con_rate
+
+goal13_con_rate <- clean_source_data %>%
+ summarise(goal_rate = round((sum(goal13completions)/(sum(sessions))*100),digits = 2))
+
+goal13_con_rate
+
+```
+
+```{r}
+library(waffle)
+
 
 ```
 
