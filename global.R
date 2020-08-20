@@ -1,15 +1,28 @@
 #global.R
 library(shiny)
 library(tidyverse)
+library(lubridate)
 library(janitor)
 library(data.table)
-library(CodeClanData)
+
 
 #set input variables
 
 
-## Dave's code
-landing_data <- read_csv("raw_data/source_and_landing.csv")
+
+
+
+
+
+clean_source_data <- read_csv("clean_data/clean_source_data.csv") %>% 
+  rename(Source = source)
+
+source_and_landing <- read_csv("raw_data/source_and_landing.csv")
+goals_data <- read_csv("raw_data/goal_data.csv") 
+exit_pages <- read_csv("raw_data/exit_pages.csv")
+  
+
+
 
 
 
@@ -76,3 +89,7 @@ goal_17_returns <- landing_category_col %>%
   arrange(desc(total_goal_sessions))
 
 ## end Dave's code
+
+#pull data
+
+
