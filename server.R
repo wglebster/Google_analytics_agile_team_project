@@ -29,7 +29,7 @@ server <- function(input, output){
       labs(title = "Event bookings by month",
            x = "Month",
            y = "Number of bookings") +
-      theme(legend.position = c(0.13,0.9))
+      theme(legend.position = c(0.09,0.9))
   })
   output$top10_session_terminated <- renderPlot({
     exit_pages_and_goals_data() %>%
@@ -45,21 +45,6 @@ server <- function(input, output){
       labs(title = "Top 10 pages where session was terminated",
            x = "Page URL",
            y = "Number of terminated sessions")
-  })
-  output$top_10_before_event_booking <- renderPlot({
-    exit_pages_and_goals_data() %>%
-      group_by(goalPreviousStep1) %>%
-      summarise(completions_count = sum(completions_count)) %>%
-      arrange(desc(completions_count)) %>%
-      head(10) %>%
-      ggplot() +
-      aes(x = goalPreviousStep1,
-          y = completions_count) +
-      geom_bar(stat = "identity")+
-      coord_flip()+
-      labs(title = "Top 10 visited pages before an Event booking",
-           x = "Page URL",
-           y = "Number of Event bookings")
   })
   
   ################End Gleb's code############

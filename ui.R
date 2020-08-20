@@ -23,7 +23,6 @@ ui <- fluidPage(
         tabPanel("Previous to Goal"),
         tabPanel("Drop off/Exit",
                  plotOutput("event_booking_chart"),
-                 plotOutput("top_10_before_event_booking"),
                  plotOutput("top10_session_terminated")
                  )
       )
