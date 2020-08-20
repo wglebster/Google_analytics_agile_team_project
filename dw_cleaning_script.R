@@ -1,21 +1,19 @@
-#global.R
-library(shiny)
-library(tidyverse)
-library(lubridate)
-library(forcats)
-library(janitor)
-library(data.table)
 
-clean_source_data <- read_csv("clean_data/clean_source_data.csv")
-clean_goal_prev_data <- read_csv("clean_data/clean_goal_prev_data.csv")
-source_and_landing <- read_csv("raw_data/source_and_landing.csv")
-goals_data <- read_csv("raw_data/goal_data.csv") 
-exit_pages <- read_csv("raw_data/exit_pages.csv")
-landing_data <- read_csv("raw_data/source_and_landing.csv") 
+library(tidyverse)
+library(janitor)
+library(ggplot2)
+
+
+landing_data <- read_csv("raw_data/source_and_landing.csv")
+
+
+
+
 
 clean_landing_data <- landing_data %>% 
   select(date, landingPagePath, sessions, goal13Completions, goal17Completions) %>% 
   clean_names()
+
 
 landing_category_col<- clean_landing_data %>%
   mutate(landing_category = case_when(
@@ -32,6 +30,7 @@ landing_category_col<- clean_landing_data %>%
     str_detect(landing_page_path, "[a-z]") ~ "other",
     TRUE ~ "homepage"))
 
+
 landing_cat_v_total_sessions <- landing_category_col %>% 
   ggplot() +
   aes(x = landing_category, y = sessions, fill = landing_category) +
@@ -41,6 +40,7 @@ landing_cat_v_total_sessions <- landing_category_col %>%
   geom_col() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 
+
 top_10_other <- landing_category_col %>% 
   filter(landing_category == "other") %>% 
   group_by(landing_page_path) %>% 
@@ -48,11 +48,13 @@ top_10_other <- landing_category_col %>%
   arrange(desc(total_sessions)) %>% 
   slice(1:10)
 
+
 landing_category_col %>% 
   group_by(landing_category) %>% 
   summarise(total_sessions = sum(sessions), goal_13_total = sum(goal13completions), goal_17_total = sum(goal17completions)) %>% 
   mutate(goal_13_cr = goal_13_total/total_sessions, goal_17_cr = goal_17_total/total_sessions) %>% 
-  arrange(desc(goal_13_cr))
+  arrange(desc(goal_13_cr)) %>% 
+  head(10)
 
 
 goal_13_returns <- landing_category_col %>% 
@@ -67,4 +69,6 @@ goal_17_returns <- landing_category_col %>%
   group_by(landing_category) %>% 
   summarise(total_goal_sessions = sum(goal17completions)) %>% 
   arrange(desc(total_goal_sessions))
+
+
 

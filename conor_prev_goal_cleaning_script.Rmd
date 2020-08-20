@@ -1,0 +1,152 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+prev_goal_data <- read_csv("raw_data/goal_data.csv") %>% 
+  clean_names() 
+
+view(prev_goal_data)
+```
+
+```{r}
+colnames(prev_goal_data)
+
+```
+
+```{r}
+clean_goal_prev_data <- prev_goal_data %>%
+  mutate(goal_previous_step1 = tolower(goal_previous_step1)) %>% 
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "entrance|events"),
+                                 yes = "Entrance",
+                                 no = goal_previous_step1)) %>%
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1,
+                                                        pattern = "courses/data-analysis"),
+                                                        yes = "DA course",
+                                                        no = goal_previous_step1)) %>%
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "courses/professional-software-development"),
+                                 yes = "SD course",
+                                 no = goal_previous_step1)) %>%
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "glasgow/"),
+                                 yes = "Glasgow",
+                                 no = goal_previous_step1)) %>%
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "edinburgh/"),
+                                 yes = "Edinburgh",
+                                 no = goal_previous_step1)) %>% 
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "blog/"),
+                                 yes = "Blog",
+                                 no = goal_previous_step1)) %>% 
+    mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "coronavirus"),
+                                 yes = "Coronavirus",
+                                 no = goal_previous_step1)) %>% 
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "with-agile"),
+                                 yes = "Course (gen)",
+                                 no = goal_previous_step1)) %>%
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "webinars"),
+                                 yes = "Webinars",
+                                 no = goal_previous_step1)) %>% 
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "(not set)"),
+                                 yes = "Not set",
+                                 no = goal_previous_step1)) %>% 
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "campuses/highlands"),
+                                 yes = "Highlands",
+                                 no = goal_previous_step1)) %>% 
+  mutate(goal_previous_step1 = ifelse(test = str_detect(goal_previous_step1, pattern = "^/$"),
+                                 yes = "Homepage",
+                                 no = goal_previous_step1))
+  
+  
+  
+  
+  
+
+  view(clean_goal_prev_data)
+```
+
+
+```{r}
+write_csv(clean_goal_prev_data, "clean_data/clean_goal_prev_data.csv")
+```
+
+top 5 most viewed previous pages 
+
+```{r}
+top_5_prev_goal <- clean_goal_prev_data %>% 
+  group_by(goal_previous_step1) %>% 
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>% 
+  head(5)
+
+view(top_5_prev_goal)
+```
+
+top 10 for data analysis
+```{r}
+top_10_prev_goal13 <- clean_goal_prev_data %>% 
+  filter(goal13completions > 0) %>% 
+  group_by(goal_previous_step1) %>% 
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>% 
+  head(10) 
+
+view(top_10_prev_goal13)
+  
+```
+
+
+
+top 10 for software development
+
+```{r}
+top_10_prev_goal17 <- clean_goal_prev_data  %>% 
+  filter(goal17completions > 0) %>% 
+  group_by(goal_previous_step1) %>% 
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>% 
+  head(10)
+
+view(top_10_prev_goal17)
+```
+
+
+
+
+
+```{r}
+ggplot(top_10_prev_goal13) +
+  aes(x= goal_previous_step1, y = count) +
+  geom_bar(stat="identity", aes(fill = goal_previous_step1))+
+  coord_flip()
+```
+
+```{r}
+ggplot(top_10_prev_goal17) +
+  aes(x= goal_previous_step1, y = count) +
+  geom_bar(stat="identity", aes(fill = goal_previous_step1))+
+  coord_flip()
+```
+
+```{r}
+ggplot(top_5_prev_goal) +
+  aes(x= goal_previous_step1, y = count) +
+  geom_bar(stat="identity", aes(fill = goal_previous_step1))+
+  coord_flip()
+```
+
+
+
+
+
+
+
+
+
+
+
+

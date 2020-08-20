@@ -1,0 +1,89 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+source_data <- read_csv("raw_data/source_and_landing.csv") %>% 
+  clean_names() %>%
+  select(-landing_page_path, - time_on_page, -exit_page_path, -users)
+  
+view(source_data)
+```
+
+```{r}
+colnames(source_data)
+```
+
+
+```{r}
+view(unique(source_data$source))
+```
+
+```{r}
+clean_source_data <- source_data %>%
+  mutate(source = tolower(source)) %>% 
+  mutate(source = ifelse(test = str_detect(source, pattern = "linkedin|facebook|instagram|twitter|t.co|lnkd.in"),
+                                 yes = "Social network",
+                                 no = source))%>%
+  mutate(source = ifelse(test = str_detect(source, pattern = "(direct)"),
+                                 yes = "Direct",
+                                 no = source)) %>%
+    mutate(source = ifelse(test = str_detect(source, pattern = "google|bing|duckduckgo|yahoo|izito|qte-search.com|sogou|ask|ecosia|qwant|baidu"),
+                                 yes = "Search engine",
+                                 no = source)) %>% 
+   mutate(source = ifelse(test = str_detect(source, pattern = "alumni|codeclan employer partners|newsletter|dbefdyba fzcyblfe cbegafef 5341|employer|futurescot events|jfcfvgf fhcfdevcfef|master sign-up list|short course students|unknown list|website subscribers|mail|talktalk"),
+                                 yes = "Email",
+                                 no = source)) %>% 
+  mutate(source = ifelse(test = str_detect(source, pattern = "local|understand|s3.amazonaws|forms|134|report"),
+                                 yes = "other",
+                                 no = source)) %>%
+  mutate(source = ifelse(test = str_detect(source, pattern = "[.]|business|careerkarma|data"),
+                                 yes = "Site referral",
+                                 no = source))x
+
+  
+```
+
+#source data has been cleaned into 5 distinct types: social_network, direct, search_engine, email, other and site_referral
+
+```{r}
+write_csv(clean_source_data, "clean_data/clean_source_data.csv")
+```
+
+
+```{r}
+source_sessions_plot <- ggplot(clean_source_data) +
+  aes(x= source, y = sessions) +
+  geom_bar(stat="identity", aes(fill = source))
+
+source_sessions_plot
+```
+
+```{r}
+options(scipen = 999)
+
+
+goal17_con_rate <- clean_source_data %>%
+ summarise(goal_rate = round((sum(goal17completions)/(sum(sessions))*100),digits = 2))
+
+goal17_con_rate
+
+goal13_con_rate <- clean_source_data %>%
+ summarise(goal_rate = round((sum(goal13completions)/(sum(sessions))*100),digits = 2))
+
+goal13_con_rate
+
+```
+
+```{r}
+library(waffle)
+
+
+```
+
