@@ -36,6 +36,7 @@ server <- function(input, output){
       group_by(exitPagePath) %>%
       summarise(terminated_sessions = sum(sessions)) %>%
       arrange(desc(terminated_sessions)) %>%
+      mutate(exitPagePath = fct_reorder(exitPagePath, terminated_sessions)) %>%
       head(10) %>%
       ggplot() +
       aes(x = exitPagePath,
