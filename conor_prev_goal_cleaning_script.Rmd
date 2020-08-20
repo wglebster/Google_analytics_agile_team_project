@@ -17,6 +17,7 @@ view(prev_goal_data)
 
 ```{r}
 colnames(prev_goal_data)
+
 ```
 
 ```{r}
@@ -93,8 +94,29 @@ top_10_prev_goal13 <- clean_goal_prev_data %>%
   summarise(count = n()) %>%
   arrange(desc(count)) %>% 
   head(10) 
+
+view(top_10_prev_goal13)
   
 ```
+
+
+
+top 10 for software development
+
+```{r}
+top_10_prev_goal17 <- clean_goal_prev_data  %>% 
+  filter(goal17completions > 0) %>% 
+  group_by(goal_previous_step1) %>% 
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>% 
+  head(10)
+
+view(top_10_prev_goal17)
+```
+
+
+
+
 
 ```{r}
 ggplot(top_10_prev_goal13) +
@@ -116,26 +138,6 @@ ggplot(top_5_prev_goal) +
   geom_bar(stat="identity", aes(fill = goal_previous_step1))+
   coord_flip()
 ```
-
-
-
-
-
-top 10 for software development
-
-```{r}
-top_10_prev_goal17 <- clean_goal_prev_data  %>% 
-  filter(goal17completions > 0) %>% 
-  group_by(goal_previous_step1) %>% 
-  summarise(count = n()) %>%
-  arrange(desc(count)) %>% 
-  head(10)
-```
-
-
-
-
-
 
 
 

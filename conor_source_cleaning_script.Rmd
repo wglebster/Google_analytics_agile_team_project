@@ -29,23 +29,24 @@ view(unique(source_data$source))
 clean_source_data <- source_data %>%
   mutate(source = tolower(source)) %>% 
   mutate(source = ifelse(test = str_detect(source, pattern = "linkedin|facebook|instagram|twitter|t.co|lnkd.in"),
-                                 yes = "social_network",
+                                 yes = "Social network",
                                  no = source))%>%
   mutate(source = ifelse(test = str_detect(source, pattern = "(direct)"),
-                                 yes = "direct",
+                                 yes = "Direct",
                                  no = source)) %>%
     mutate(source = ifelse(test = str_detect(source, pattern = "google|bing|duckduckgo|yahoo|izito|qte-search.com|sogou|ask|ecosia|qwant|baidu"),
-                                 yes = "search_engine",
+                                 yes = "Search engine",
                                  no = source)) %>% 
    mutate(source = ifelse(test = str_detect(source, pattern = "alumni|codeclan employer partners|newsletter|dbefdyba fzcyblfe cbegafef 5341|employer|futurescot events|jfcfvgf fhcfdevcfef|master sign-up list|short course students|unknown list|website subscribers|mail|talktalk"),
-                                 yes = "email",
+                                 yes = "Email",
                                  no = source)) %>% 
   mutate(source = ifelse(test = str_detect(source, pattern = "local|understand|s3.amazonaws|forms|134|report"),
                                  yes = "other",
                                  no = source)) %>%
   mutate(source = ifelse(test = str_detect(source, pattern = "[.]|business|careerkarma|data"),
-                                 yes = "site_referral",
-                                 no = source))
+                                 yes = "Site referral",
+                                 no = source))x
+
   
 ```
 

@@ -8,8 +8,8 @@ ui <- fluidPage(
                      ),
       radioButtons("course",
                    label = "Select Course",
-                     choices = c("goal13completions",
-                                 "goal17completions"),
+                     choices = c("Data Analysis" = "goal13completions",
+                                 "Software Development" = "goal17completions"),
                    selected = "goal13completions")
     ),
     mainPanel(
@@ -22,7 +22,11 @@ ui <- fluidPage(
         
         
         tabPanel("Landing"),
-        tabPanel("Previous to Goal"),
+        tabPanel("Previous to Goal",
+                 plotOutput("prev_g13_plot"),
+                 plotOutput("prev_g17_plot"),
+                 ),
+        
         tabPanel("Drop off/Exit",
                  radioButtons("goal_or_not",
                               label = "Select",
