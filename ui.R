@@ -15,6 +15,9 @@ ui <- fluidPage(
       tabsetPanel(
         tabPanel("Source"),
         tabPanel("Landing"),
+                  plotOutput("landing_cat_v_total_sessions"),
+                  DT::dataTableOutput("top_10_other"),
+                  
         tabPanel("Previous to Goal"),
         tabPanel("Drop off/Exit",
                  radioButtons("goal_or_not",
