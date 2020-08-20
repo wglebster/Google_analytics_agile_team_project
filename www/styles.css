@@ -7,8 +7,12 @@
 
 body { /* page body styling */
   font-family: Verdana, Helvetica, sans-serif;
-  color: black;
+  color: white;
   background-color: #4DA2CD;
+}
+table, .dataTable, tbody, tr, .selected { 
+  background-color: grey;
+  color: black;
 }
 .header img{
   float: right;

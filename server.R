@@ -78,11 +78,11 @@ server <- function(input, output){
   
   output$landing_cat_v_total_sessions <- renderPlot ({
     ggplot(clean_landing_data_filtered()) + 
-      aes(x = landing_category, y = sessions) +
+      aes(x = landing_category, y = sessions, fill = "#E9415E") +
       labs(x = "Landing Page Primary Category",
            y = "Total Number of Sessions",
            title = "\nTotal Number of Session by Primary Location Category") +
-      geom_col() +
+      geom_col(show.legend = FALSE) +
       theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
   })
   
@@ -101,8 +101,8 @@ server <- function(input, output){
       summarise(total_sessions = sum(sessions), DA_goal = sum(goal13completions), PSD_goal = sum(goal17completions)) %>%
       mutate(DA_con_rate = round((DA_goal/total_sessions) * 100, digits = 2), 
              PSD_con_rate = round((PSD_goal/total_sessions) * 100, digits = 2)) %>% 
-      arrange(desc(DA_con_rate)) %>%
-      head(10)
+      arrange(desc(DA_con_rate)) #%>%
+      #head(100)
   })
   
   output$top_10_other_text <- renderText(c("Having explored the top URL branches for landing pages we will have a quick look at the other landing pages that contain are contained within the 'other' grouping."))
@@ -117,30 +117,50 @@ server <- function(input, output){
  
   
   exit_pages_and_goals_data <- reactive({
-    # browser()
+    #browser()
     bind_rows(exit_pages, goals_data) %>%
-      mutate(month = month(x = date, label = TRUE)) %>%
-      filter(between(date, 
-                     input$dates[1],
-                     input$dates[2])) %>%
-      filter(exitPagePath == "/events/") %>% 
       pivot_longer(c(6,7),
                    names_to = "course",
                    values_to = "completions_count") %>%
       mutate(course = ifelse(course == "goal13Completions", 
-                             "Data Analysis", "Software Development")) %>%
-      group_by(month, course) %>%
-      summarise(completions_count = sum(completions_count))
+                             "Data Analysis",
+                             "Software Development")) %>%
+      mutate(month = lubridate::month(date,label = TRUE )) %>%
+      filter(between(date, 
+                     input$dates[1],
+                     input$dates[2]))
   })
+  
   output$event_booking_chart <- renderPlot({
-    ggplot(exit_pages_and_goals_data()) +
+    exit_pages_and_goals_data() %>%
+      group_by(month, course) %>%
+      summarise(completions_count = sum(completions_count)) %>%
+      ggplot() +
       aes(x = month, 
           y = completions_count,
           fill = course) +
       geom_bar(position = "dodge", stat = "identity")+
       labs(title = "Event bookings by month",
-           x = "Number of bookings",
-           y = "Month")
+           x = "Month",
+           y = "Number of bookings") +
+      theme(legend.position = c(0.09,0.9))
+  })
+  output$top10_session_terminated <- renderPlot({
+    exit_pages_and_goals_data() %>%
+      group_by(exitPagePath) %>%
+      summarise(terminated_sessions = sum(sessions)) %>%
+      arrange(desc(terminated_sessions)) %>%
+      mutate(exitPagePath = fct_reorder(exitPagePath, terminated_sessions)) %>%
+      head(10) %>%
+      ggplot() +
+      aes(x = exitPagePath,
+          y = terminated_sessions,
+          fill = "#E9415E") +
+      geom_bar(stat = "identity", show.legend = FALSE) +
+      coord_flip() +
+      labs(title = "Top 10 pages where session was terminated",
+           x = "Page URL",
+           y = "Number of terminated sessions")
   })
   
   
