@@ -5,12 +5,17 @@
 #E6C372  - yellow
 */
 
-body { /* page body styling */
+body { 
   font-family: Verdana, Helvetica, sans-serif;
   color: white;
   background-color: #4DA2CD;
 }
+
 table, .dataTable, tbody, tr, .selected { 
+  background-color: grey;
+  color: black;
+}
+.col-sm-6 {
   background-color: grey;
   color: black;
 }
