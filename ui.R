@@ -1,6 +1,4 @@
-ui <- fluidPage(tags$div(class="header",
-                        img(src = "cropped-CodeClan-Logo-White-2019-01-1.png")),
-                        theme = "styles.css",
+ui <- fluidPage(theme = "styles.css",
   titlePanel("Events Dashboard"),
   
   sidebarLayout(
