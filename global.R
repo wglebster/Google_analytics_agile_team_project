@@ -6,7 +6,8 @@ library(forcats)
 library(janitor)
 library(data.table)
 
-
+clean_source_data <- read_csv("clean_data/clean_source_data.csv") 
+clean_goal_prev_data <- read_csv("clean_data/clean_goal_prev_data.csv")
 landing_data <- read_csv("raw_data/source_and_landing.csv") 
 source_and_landing <- read_csv("raw_data/source_and_landing.csv")
 goals_data <- read_csv("raw_data/goal_data.csv") 
