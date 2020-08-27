@@ -2,6 +2,7 @@
 
 Authors: Gleb Vulf, David Wright and Conor Power.
 ​
+
 A group project involving the planning, coding and presentation of a R Shiny dashboard style app.
 ​
 The project took place over a week's period and all authors worked together on it remotely.
