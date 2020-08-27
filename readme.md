@@ -1,6 +1,6 @@
 # R Shiny app group project.
 
-Authors: Gleb Vulf, David Wright and Conor Power
+Authors: Gleb Vulf, David Wright and Conor Power.
 ​
 A group project involving the planning, coding and presentation of a R Shiny dashboard style app.
 ​
