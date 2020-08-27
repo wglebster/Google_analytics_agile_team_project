@@ -57,7 +57,7 @@ Firstly, we agreed on a shared set of principles for how we want to work:
 
 We then had a look at the brief and began planning out an agreed work schedule. Additionally we got comfortable with data and its proposed functionality and prepared follow up questions for the client.
 
-![](data:image/www/Screenshot 2020-08-24 at 15.41.27.png)
+![](www/Screenshot 2020-08-24 at 15.41.27.png)
 
 
 Here were some examples of mock-ups we made for our proposed dashboard app:
