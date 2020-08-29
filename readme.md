@@ -1,4 +1,4 @@
-# Google Analytics R Shiny App
+# Google Analytics R Shiny App (uning synthetic data)
 
 
 Authors: Gleb Vulf, David Wright and Conor Power.
